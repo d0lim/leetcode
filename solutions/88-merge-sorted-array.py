@@ -1,9 +1,15 @@
 class Solution:
     def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
-        """
-        Do not return anything, modify nums1 in-place instead.
-        """
-        for n in nums2:
-            i = nums1.index(0)
-            nums1[i] = n
-        nums1.sort()
+        i1 = m - 1
+        i2 = n - 1
+        right = m + n - 1
+
+        while i2 >= 0:
+            if i1 >= 0 and nums1[i1] > nums2[i2]:
+                nums1[right] = nums1[i1]
+                i1 -= 1
+            else:
+                nums1[right] = nums2[i2]
+                i2 -= 1
+            right -= 1
+        
